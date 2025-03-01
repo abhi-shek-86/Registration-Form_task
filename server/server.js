@@ -37,4 +37,14 @@ app.post("/register", async (req, res) => {
     }
 });
 
+// API Route to get all users
+app.get("/users", async (req, res) => {
+    try {
+        const users = await User.find();
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
